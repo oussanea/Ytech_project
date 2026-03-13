@@ -8,5 +8,4 @@ Functions:
 - Delete employee
 - View employee list
 
-Technology: Laravel
-Access: Internal network only
+
