@@ -2,3 +2,5 @@ streamlit
 ollama
 bcrypt
 cryptography
+pypdf2
+python-docx
