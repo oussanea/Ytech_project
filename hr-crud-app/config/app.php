@@ -11,7 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Constantes
 define('APP_NAME', 'Système RH');
-define('BASE_URL', '/RH-CRUD_appllication');
+define('BASE_URL', '/RH-CRUD_appllication/hr-crud-app');
 
 // Rôles utilisateur
 define('ROLE_CEO', 'CEO');
