@@ -1,116 +1,182 @@
-# Système RH - HR Management System
+# 🏢 Application RH - HR Management System
 
-Application de gestion des ressources humaines en PHP/MySQL, créée pour un cours de cybersécurité.  
-**L'application est volontairement simple et non sécurisée** pour permettre la démonstration de vulnérabilités (SQL Injection, XSS, CSRF).
+Application web de gestion des ressources humaines développée en **PHP / MySQL**.
 
-## Prérequis
+Cette application fait partie du projet global de cybersécurité **Ytech Solutions**.
 
-- WAMP (Windows) ou LAMP (Linux)
-- PHP 7.4+
-- MySQL 5.7+ ou MariaDB
-- Apache avec mod_rewrite (optionnel)
+---
 
-## Installation
+## 🎯 Objectif
+
+Fournir un système interne permettant de :
+
+* Gérer les employés
+* Gérer les départements
+* Suivre les absences
+* Appliquer des rôles et permissions
+
+---
+
+## ⚙️ Technologies utilisées
+
+* PHP (Vanilla)
+* MySQL / MariaDB
+* HTML / CSS / Bootstrap
+* Apache (WAMP / LAMP)
+
+---
+
+## 🚀 Fonctionnalités
+
+### 🔐 Authentification
+
+* Connexion via login
+* Sessions PHP
+* Gestion des rôles (CEO, HR, IT Admin)
+
+---
+
+### 📊 Tableau de bord
+
+* Total employés
+* Employés actifs
+* Absences du jour
+* Répartition par département
+
+---
+
+### 👥 Gestion des employés
+
+* Ajout d’employés
+* Modification des informations
+* Activation / Désactivation (pas de suppression pour HR)
+* Filtrage par département
+
+---
+
+### 🏢 Départements
+
+* Direction Générale
+* Informatique (IT)
+* Développement
+* Ressources Humaines
+* Finance / Comptabilité
+* Commercial & Marketing
+
+---
+
+### 📅 Gestion des absences
+
+* Sélection multiple
+* Enregistrement des absences
+* Affichage dans le dashboard
+
+---
+
+## 🔐 Gestion des rôles
+
+| Action                                         | CEO | HR | IT Admin |
+| ---------------------------------------------- | --- | -- | -------- |
+| Voir dashboard                                 | ✅   | ✅  | ✅        |
+| Voir employés                                  | ✅   | ✅  | ✅        |
+| Ajouter employé                                | ❌   | ✅  | ✅        |
+| Modifier (salaire, téléphone, adresse, statut) | ❌   | ✅  | ✅        |
+| Modifier (nom, département)                    | ❌   | ❌  | ✅        |
+| Supprimer employé                              | ❌   | ❌  | ✅        |
+| Marquer absences                               | ❌   | ✅  | ✅        |
+
+---
+
+## ⚠️ Sécurité
+
+### Phase 1 (initiale)
+
+Application volontairement vulnérable :
+
+* SQL Injection
+* XSS
+* Absence de CSRF
+
+---
+
+### Phase 2 (amélioration)
+
+Corrections implémentées :
+
+* password_hash() / password_verify()
+* Requêtes préparées (PDO)
+* htmlspecialchars() pour XSS
+* Sessions sécurisées
+
+---
+
+## 🛠 Installation
 
 ### 1. Base de données
-
-Créer la base et importer le schéma :
 
 ```bash
 mysql -u root -p < database/schema.sql
 ```
 
-Ou via phpMyAdmin : créer une base `hr_system` et exécuter le contenu de `database/schema.sql`.
+---
 
 ### 2. Configuration
 
-Modifier si nécessaire `config/database.php` :
+Modifier :
 
 ```php
-$host = 'localhost';
-$dbname = 'hr_system';
-$username = 'root';
-$password = '';
+config/database.php
 ```
 
-Modifier `config/app.php` si le chemin de l'application diffère :
-
-```php
-define('BASE_URL', '/RH-CRUD_appllication');
-```
+---
 
 ### 3. Accès
 
-Ouvrir : `http://localhost/RH-CRUD_appllication/`
-
-## Comptes de test
-
-| Rôle    | Identifiant | Mot de passe  |
-|---------|-------------|---------------|
-| CEO     | ceo         | password123   |
-| HR      | hr          | password123   |
-| IT Admin| admin       | password123   |
-
-## Permissions par rôle
-
-| Action               | CEO | HR | IT Admin |
-|----------------------|-----|----|----------|
-| Voir dashboard       | ✓   | ✓  | ✓        |
-| Voir employés        | ✓   | ✓  | ✓        |
-| Ajouter employé      | ✗   | ✓  | ✓        |
-| Modifier (salaire, téléphone, adresse, statut) | ✗ | ✓ | ✓ |
-| Modifier (nom, département) | ✗ | ✗ | ✓ |
-| Supprimer employé    | ✗   | ✗  | ✓        |
-| Marquer absences     | ✗   | ✓  | ✓        |
-
-## Structure du projet
-
+```text
+http://localhost/RH-CRUD_appllication/hr-crud-app/
 ```
-RH-CRUD_appllication/
+
+---
+
+## 🔑 Comptes de test
+
+| Rôle     | Username | Password    |
+| -------- | -------- | ----------- |
+| CEO      | ceo      | password123 |
+| HR       | hr       | password123 |
+| IT Admin | admin    | password123 |
+
+---
+
+## 📁 Structure
+
+```text
+hr-crud-app/
 ├── config/
-│   ├── app.php
-│   └── database.php
 ├── includes/
-│   ├── auth.php
-│   ├── header.php
-│   └── footer.php
 ├── assets/
-│   ├── css/style.css
-│   └── js/app.js
 ├── database/
-│   └── schema.sql
 ├── employees/
-│   ├── index.php      (choisir département)
-│   ├── list.php
-│   ├── create.php
-│   ├── edit.php
-│   └── delete.php
 ├── absences/
-│   ├── mark.php
-│   └── today.php
-├── departments/
-│   └── index.php
-├── index.php
 ├── login.php
-├── logout.php
-└── dashboard.php
+├── dashboard.php
 ```
 
-## Départements
+---
 
-- Direction Générale
-- Informatique (IT)
-- Développement
-- Ressources Humaines
-- Finance / Comptabilité
-- Commercial & Marketing
+## 🧪 Tests de sécurité
 
-## Note de sécurité
+Cette application sera utilisée pour :
 
-Cette application contient des vulnérabilités intentionnelles pour l'apprentissage :
+* Tests SQL Injection
+* Tests XSS
+* Tests d’authentification
+* Analyse avec Burp Suite / SQLMap
 
-- **SQL Injection** : requêtes non préparées avec concaténation directe
-- **XSS** : certains champs pourraient afficher du contenu non échappé
-- **CSRF** : formulaires sans jetons CSRF
+---
 
-Ne pas utiliser en production sans corrections de sécurité.
+## ⚠️ Disclaimer
+
+Projet académique.
+
+❌ Ne pas utiliser en production sans sécurisation complète.
