@@ -5,3 +5,5 @@ cryptography
 mysql-connector-python
 pypdf2
 python-docx
+pypdf2
+python-docx
