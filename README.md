@@ -13,31 +13,33 @@ de fuite de données vers des services externes (ChatGPT, Gemini...).
 
 ## Technologies
 - **Streamlit** — Interface web
-- **Ollama + llama3** — IA locale
-- **SQLite** — Base de données locale
+- **Ollama + llama3.2** — IA locale
+- **MariaDB** — Base de données
+- **Docker** — Conteneurisation
 - **bcrypt** — Hashage des mots de passe
 
 ## Fonctionnalités
-- 🔐 Authentification sécurisée (bcrypt + blocage 3 tentatives)
+- 🔐 Authentification sécurisée (bcrypt + blocage 15 min)
 - 💬 Historique des conversations par utilisateur
 - 📎 Upload de fichiers PDF/Word/TXT
 - 🛡️ Rate limiting (10 messages/minute)
 - ⏱️ Session timeout (30 minutes)
 - 🔒 Logs de sécurité complets
 - 🗑️ Soft delete des conversations
+- 🐳 Déploiement Docker
 
 ## Installation
 
-### Prérequis
+### Méthode 1 — Environnement virtuel (développement)
+
+**Prérequis :**
 - Python 3.11+
 - Ollama installé → https://ollama.com/download
-- llama3 téléchargé → `ollama pull llama3`
-
-### Installation
+- llama3.2 téléchargé → `ollama pull llama3.2:1b`
 ```bash
 # Cloner le repo
-git clone https://github.com/ytech-solutions/ytech-chatbot
-cd ytech-chatbot
+git clone https://github.com/oussanea/Ytech_project.git
+cd Ytech_project
 
 # Créer l'environnement virtuel
 python -m venv venv
@@ -51,46 +53,70 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
+### Méthode 2 — Docker (production)
+
+**Prérequis :**
+- Docker Desktop installé → https://www.docker.com/products/docker-desktop/
+```bash
+# Cloner le repo
+git clone https://github.com/oussanea/Ytech_project.git
+cd Ytech_project
+
+# Lancer tous les conteneurs
+docker-compose up -d
+
+# Télécharger le modèle IA
+docker exec -it ytech-ollama ollama pull llama3.2:1b
+```
+
+**Accès :**
+```
+http://localhost:8501
+```
+
 ## Structure du projet
 ```
-ytech-chatbot/
+Ytech_project/
 ├── app.py              # Interface Streamlit
 ├── chatbot_logic.py    # Logique Ollama
 ├── auth.py             # Authentification
 ├── history.py          # Historique conversations
 ├── security.py         # Logs + rate limiting
-├── database.py         # SQLite
+├── database.py         # MariaDB
 ├── file_handler.py     # Upload fichiers
+├── docker-compose.yml  # Docker config
+├── Dockerfile          # Build chatbot
 ├── requirements.txt    # Dépendances
 └── .gitignore
 ```
 
+## Conteneurs Docker
+| Conteneur | Rôle | Port |
+|---|---|---|
+| ytech-mariadb | Base de données | 3306 |
+| ytech-ollama | IA locale | 11434 |
+| ytech-chatbot | Interface web | 8501 |
+
 ## Sécurité
 - Mots de passe hashés avec **bcrypt**
-- Blocage compte après **3 tentatives** échouées
+- Blocage compte **15 minutes** après 3 tentatives
 - **Session timeout** 30 minutes d'inactivité
 - **Rate limiting** 10 messages/minute
 - **Sanitisation** des inputs utilisateur
 - **Logs** de toutes les actions de sécurité
-- Données stockées **localement** uniquement
+- Données **100% locales** — ISO 27001
 
 ## Déploiement Ubuntu Server
 ```bash
-# Installer les dépendances système
+# Installer Docker
 sudo apt update
-sudo apt install python3 python3-pip python3-venv
-
-# Installer Ollama
-curl -fsSL https://ollama.com/install.sh | sh
-ollama pull llama3
+sudo apt install docker.io docker-compose
 
 # Cloner et lancer
-git clone https://github.com/ytech-solutions/ytech-chatbot
-cd ytech-chatbot
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-streamlit run app.py --server.port 8501
+git clone https://github.com/oussanea/Ytech_project.git
+cd Ytech_project
+docker-compose up -d
+docker exec -it ytech-ollama ollama pull llama3.2:1b
 ```
 
 ## Membres
