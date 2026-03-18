@@ -7,19 +7,24 @@ RATE_LIMIT = 10
 
 def log_action(email, action, status, ip_address="localhost"):
     conn = get_connection()
+    if not conn:
+        return
     cursor = conn.cursor()
     
     cursor.execute("""
         INSERT INTO security_logs (email, action, ip_address, status)
-        VALUES (?, ?, ?, ?)
+        VALUES (%s, %s, %s, %s)
     """, (email, action, ip_address, status))
     
     conn.commit()
+    cursor.close()
     conn.close()
 
 def check_rate_limit(email):
     conn = get_connection()
-    cursor = conn.cursor()
+    if not conn:
+        return True, "✅ OK"
+    cursor = conn.cursor(dictionary=True)
     
     # Compter les messages dans la dernière minute
     one_minute_ago = datetime.now() - timedelta(minutes=1)
@@ -27,13 +32,14 @@ def check_rate_limit(email):
     cursor.execute("""
         SELECT COUNT(*) as count 
         FROM security_logs 
-        WHERE email = ? 
+        WHERE email = %s 
         AND action = 'message'
         AND status = 'success'
-        AND created_at > ?
+        AND created_at > %s
     """, (email, one_minute_ago))
     
     result = cursor.fetchone()
+    cursor.close()
     conn.close()
     
     if result['count'] >= RATE_LIMIT:
@@ -64,15 +70,18 @@ def update_activity():
 
 def get_security_logs(email):
     conn = get_connection()
-    cursor = conn.cursor()
+    if not conn:
+        return []
+    cursor = conn.cursor(dictionary=True)
     
     cursor.execute("""
         SELECT * FROM security_logs 
-        WHERE email = ?
+        WHERE email = %s
         ORDER BY created_at DESC
         LIMIT 50
     """, (email,))
     
     logs = cursor.fetchall()
+    cursor.close()
     conn.close()
     return logs

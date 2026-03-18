@@ -1,4 +1,5 @@
 import ollama
+import os
 from security import sanitize_input, log_action, check_rate_limit
 
 SYSTEM_PROMPT = """Tu es YtechBot, l'assistant IA interne de Ytech Solutions.
@@ -8,7 +9,11 @@ Tu ne partages jamais d'informations confidentielles.
 Tu es professionnel, concis et utile.
 Rappelle toujours que tu es un assistant LOCAL et sécurisé."""
 
+OLLAMA_HOST = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
 def get_bot_response(user_input, email, conversation_history=[], file_context=None):
+
+    # Initialiser le client Ollama avec le bon host
+    client = ollama.Client(host=OLLAMA_HOST)
     allowed, message = check_rate_limit(email)
     if not allowed:
         return message
@@ -39,10 +44,11 @@ def get_bot_response(user_input, email, conversation_history=[], file_context=No
     })
     
     try:
-        response = ollama.chat(
-            model="llama3",
+        response = client.chat(
+            model="llama3.2:1b",
             messages=messages
         )
+        
         bot_response = response['message']['content']
         log_action(email, "message", "success")
         return bot_response
