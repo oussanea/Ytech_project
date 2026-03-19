@@ -1,0 +1,29 @@
+services:
+
+  ollama:
+    image: ollama/ollama
+    container_name: ytech-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: always
+
+  chatbot:
+    build: .
+    container_name: ytech-chatbot
+    ports:
+      - "8501:8501"
+    environment:
+      DB_HOST: 192.168.25.10
+      DB_PORT: 3306
+      DB_NAME: ytech_chatbot
+      DB_USER: chatbot
+      DB_PASSWORD: ChatbotPass123!
+      OLLAMA_HOST: http://ollama:11434
+    depends_on:
+      - ollama
+    restart: always
+
+volumes:
+  ollama_data:
