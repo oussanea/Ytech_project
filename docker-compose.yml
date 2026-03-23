@@ -1,0 +1,84 @@
+services:
+
+  zabbix-db:
+    image: mysql:8.0
+    container_name: zabbix-db
+    environment:
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: ZabbixPass123!
+      MYSQL_ROOT_PASSWORD: RootPass123!
+    command:
+      - mysqld
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
+      - --log_bin_trust_function_creators=1
+    volumes:
+      - zabbix_db:/var/lib/mysql
+    networks:
+      - zabbix-network
+    restart: always
+
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:latest
+    container_name: zabbix-server
+    environment:
+      DB_SERVER_HOST: zabbix-db
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: ZabbixPass123!
+    depends_on:
+      - zabbix-db
+    networks:
+      - zabbix-network
+    restart: always
+
+  zabbix-web:
+    image: zabbix/zabbix-web-nginx-mysql:latest
+    container_name: zabbix-web
+    environment:
+      DB_SERVER_HOST: zabbix-db
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: ZabbixPass123!
+      ZBX_SERVER_HOST: zabbix-server
+      PHP_TZ: Africa/Casablanca
+    depends_on:
+      - zabbix-server
+    networks:
+      - zabbix-network
+    restart: always
+
+  bitwarden:
+    image: vaultwarden/server:latest
+    container_name: ytech-bitwarden
+    ports:
+      - "8081:80"
+    volumes:
+      - bitwarden_data:/data
+    networks:
+      - zabbix-network
+    restart: always
+
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: zabbix-nginx
+    ports:
+      - "8443:443"
+      - "8080:80"
+    volumes:
+      - /etc/ssl/ytech:/etc/ssl/ytech
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - zabbix-web
+    networks:
+      - zabbix-network
+    restart: always
+
+networks:
+  zabbix-network:
+    driver: bridge
+
+volumes:
+  zabbix_db:
+  bitwarden_data:
