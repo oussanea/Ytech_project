@@ -15,12 +15,20 @@ services:
     ports:
       - "8501:8501"
     environment:
-      DB_HOST: 192.168.25.10
+      DB_HOST: 192.168.56.25
       DB_PORT: 3306
       DB_NAME: ytech_chatbot
       DB_USER: chatbot
       DB_PASSWORD: ChatbotPass123!
       OLLAMA_HOST: http://ollama:11434
+    volumes:
+      - /etc/ssl/ytech:/etc/ssl/ytech
+    command: >
+      streamlit run app.py
+      --server.port=8501
+      --server.address=0.0.0.0
+      --server.sslCertFile=/etc/ssl/ytech/ytech.crt
+      --server.sslKeyFile=/etc/ssl/ytech/ytech.key
     depends_on:
       - ollama
     restart: always
