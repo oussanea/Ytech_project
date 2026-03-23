@@ -27,6 +27,7 @@ de fuite de données vers des services externes (ChatGPT, Gemini...).
 - 🔒 Logs de sécurité complets
 - 🗑️ Soft delete des conversations
 - 🐳 Déploiement Docker
+- 🔒 HTTPS avec certificat SSL
 
 ## Installation
 
@@ -53,14 +54,15 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-### Méthode 2 — Docker (production)
+### Méthode 2 — Docker développement (tout en un)
 
 **Prérequis :**
-- Docker Desktop installé → https://www.docker.com/products/docker-desktop/
+- Docker Desktop → https://www.docker.com/products/docker-desktop/
 ```bash
 # Cloner le repo
 git clone https://github.com/oussanea/Ytech_project.git
 cd Ytech_project
+git checkout feature/chatbot-ollama
 
 # Lancer tous les conteneurs
 docker-compose up -d
@@ -74,28 +76,89 @@ docker exec -it ytech-ollama ollama pull llama3.2:1b
 http://localhost:8501
 ```
 
+### Méthode 3 — Docker production (2 serveurs séparés)
+
+**Sur VM1 — Serveur Chatbot + Ollama (VLAN 20) :**
+```bash
+git clone https://github.com/oussanea/Ytech_project.git
+cd Ytech_project
+git checkout feature/chatbot-ollama
+
+# Générer certificat HTTPS
+sudo mkdir -p /etc/ssl/ytech
+sudo openssl req -x509 -nodes -days 365 \
+  -newkey rsa:2048 \
+  -keyout /etc/ssl/ytech/ytech.key \
+  -out /etc/ssl/ytech/ytech.crt \
+  -subj "/C=MA/ST=Casablanca/O=Ytech Solutions/CN=IP_VM1"
+
+# Lancer chatbot + ollama
+docker-compose -f docker-compose.prod.yml up -d
+
+# Télécharger le modèle
+docker exec -it ytech-ollama ollama pull llama3.2:1b
+```
+
+**Sur VM2 — Serveur MariaDB (VLAN 25) :**
+```bash
+git clone https://github.com/oussanea/Ytech_project.git
+cd Ytech_project
+git checkout feature/chatbot-ollama
+
+# Lancer MariaDB
+docker-compose -f docker-compose.db.yml up -d
+
+# Autoriser VM1
+docker exec -it ytech-mariadb mariadb -u root -pRootPass123!
+GRANT ALL ON ytech_chatbot.* TO 'chatbot'@'IP_VM1' IDENTIFIED BY 'ChatbotPass123!';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+**Accès HTTPS :**
+```
+https://IP_VM1:8501
+```
+
+## Architecture de déploiement
+```
+VM1 — Serveur Chatbot (VLAN 20)
+└── Docker
+    ├── Ollama (port 11434)
+    └── YtechBot Streamlit (port 8501 HTTPS)
+        └── → MariaDB VM2
+
+VM2 — Serveur MariaDB (VLAN 25)
+└── Docker
+    └── MariaDB (port 3306)
+        └── ytech_chatbot database
+```
+
 ## Structure du projet
 ```
 Ytech_project/
-├── app.py              # Interface Streamlit
-├── chatbot_logic.py    # Logique Ollama
-├── auth.py             # Authentification
-├── history.py          # Historique conversations
-├── security.py         # Logs + rate limiting
-├── database.py         # MariaDB
-├── file_handler.py     # Upload fichiers
-├── docker-compose.yml  # Docker config
-├── Dockerfile          # Build chatbot
-├── requirements.txt    # Dépendances
+├── app.py                    # Interface Streamlit
+├── chatbot_logic.py          # Logique Ollama
+├── auth.py                   # Authentification
+├── history.py                # Historique conversations
+├── security.py               # Logs + rate limiting
+├── database.py               # MariaDB
+├── file_handler.py           # Upload fichiers
+├── docker-compose.yml        # Docker dev (tout en un)
+├── docker-compose.prod.yml   # Docker prod VM1
+├── docker-compose.db.yml     # Docker prod VM2
+├── Dockerfile                # Build chatbot
+├── requirements.txt          # Dépendances
 └── .gitignore
 ```
 
 ## Conteneurs Docker
-| Conteneur | Rôle | Port |
-|---|---|---|
-| ytech-mariadb | Base de données | 3306 |
-| ytech-ollama | IA locale | 11434 |
-| ytech-chatbot | Interface web | 8501 |
+
+| Conteneur | Rôle | Port | Serveur |
+|---|---|---|---|
+| ytech-ollama | IA locale | 11434 | VM1 |
+| ytech-chatbot | Interface web HTTPS | 8501 | VM1 |
+| ytech-mariadb | Base de données | 3306 | VM2 |
 
 ## Sécurité
 - Mots de passe hashés avec **bcrypt**
@@ -105,19 +168,14 @@ Ytech_project/
 - **Sanitisation** des inputs utilisateur
 - **Logs** de toutes les actions de sécurité
 - Données **100% locales** — ISO 27001
+- **HTTPS** avec certificat SSL auto-signé
+- BDD isolée sur serveur séparé — VLAN 25
 
-## Déploiement Ubuntu Server
-```bash
-# Installer Docker
-sudo apt update
-sudo apt install docker.io docker-compose
-
-# Cloner et lancer
-git clone https://github.com/oussanea/Ytech_project.git
-cd Ytech_project
-docker-compose up -d
-docker exec -it ytech-ollama ollama pull llama3.2:1b
-```
+## Note déploiement
+Les IPs 192.168.56.x sont utilisées pour la simulation VirtualBox.
+En production réelle sur GNS3 :
+- VM1 Chatbot → 192.168.20.20
+- VM2 MariaDB → 192.168.25.10
 
 ## Membres
 - Développement & Déploiement : Raja JARFANI
