@@ -1,0 +1,5 @@
+Options -Indexes
+RewriteEngine On
+
+# Block direct access to config folder
+RewriteRule ^config/ - [F,L]

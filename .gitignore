@@ -1,0 +1,6 @@
+config/database.php
+config/app.php
+config/hr_system.sql
+hashed.php
+*.sql
+*.log
