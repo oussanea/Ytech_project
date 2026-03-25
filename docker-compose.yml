@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: hr-container
+    network_mode: host
+    restart: always
+    volumes:
+      - ./config/database.php:/var/www/html/hr-app/config/database.php
