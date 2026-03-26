@@ -9,7 +9,7 @@ Surveille en temps réel tous les serveurs de Ytech Solutions.
 | Service | Rôle | Port | HTTPS |
 |---|---|---|---|
 | Zabbix | Monitoring réseau | 8443 | ✅ |
-| Bitwarden | Gestionnaire MDP | 8443/bitwarden | ✅ |
+| Bitwarden | Gestionnaire MDP | 8444 | ✅ |
 | Nginx | Reverse proxy HTTPS | 443/80 | ✅ |
 
 ## Accès
@@ -23,16 +23,18 @@ Password : zabbix
 
 ### Bitwarden
 ```
-https://192.168.56.30:8443/bitwarden
+https://192.168.56.30:8444
+Email : admin@ytech.com
 ```
 
 ## Serveurs surveillés
 
-| Host | IP | Status |
-|---|---|---|
-| Chatbot-Ollama | 192.168.56.20 | ✅ Vert |
-| MariaDB-Server | 192.168.56.25 | ✅ Vert |
-| MGMT-Zabbix | 192.168.56.30 | ✅ Vert |
+| Host | IP | Rôle | Status |
+|---|---|---|---|
+| VM1-Chatbot-CRUD | 192.168.56.20 | Chatbot + App CRUD RH | ✅ Vert |
+| MariaDB-Server | 192.168.56.25 | Base de données | ✅ Vert |
+| MGMT-Zabbix | 192.168.56.30 | Monitoring + Sécurité | ✅ Vert |
+| AppWeb-Meryem | 192.168.10.21 | App Web commerciale | ✅ Vert |
 
 ## Installation
 
@@ -68,24 +70,34 @@ sudo apt update
 sudo apt install -y zabbix-agent
 
 sudo nano /etc/zabbix/zabbix_agentd.conf
-# Server=IP_ZABBIX_DOCKER
-# ServerActive=IP_ZABBIX_DOCKER
+# Server=IP_BRIDGE_VM3
+# ServerActive=IP_BRIDGE_VM3
 # Hostname=NOM_SERVEUR
 
 sudo systemctl restart zabbix-agent
 sudo systemctl enable zabbix-agent
+sudo ufw allow 10050/tcp
 ```
 
 ## Architecture VLAN 30
 ```
 VM3 — 192.168.56.30
 └── Docker
-    ├── Nginx (reverse proxy HTTPS)
+    ├── Nginx (reverse proxy)
+    │   ├── port 8443 → Zabbix
+    │   └── port 8444 → Bitwarden
     ├── Zabbix Server
     ├── Zabbix Web
     ├── Zabbix DB (MySQL)
     └── Bitwarden (Vaultwarden)
 ```
+
+## Historique des modifications
+- ✅ Zabbix déployé avec HTTPS
+- ✅ Bitwarden déployé avec HTTPS
+- ✅ Ports séparés → Zabbix:8443 / Bitwarden:8444
+- ✅ 4 agents Zabbix configurés
+- ✅ Compte admin Bitwarden créé → admin@ytech.com
 
 ## Note déploiement
 Les IPs 192.168.56.x sont utilisées pour la simulation VirtualBox.
