@@ -66,11 +66,13 @@ services:
     ports:
       - "8443:443"
       - "8080:80"
+      - "8444:8444"
     volumes:
       - /etc/ssl/ytech:/etc/ssl/ytech
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - zabbix-web
+      - bitwarden
     networks:
       - zabbix-network
     restart: always
