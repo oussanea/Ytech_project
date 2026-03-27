@@ -12,11 +12,12 @@ if (!canDeleteEmployee()) {
     exit;
 }
 
-$id = (int) ($_GET['id'] ?? 0);
+$id         = (int) ($_GET['id'] ?? 0);
 $department = $_GET['department'] ?? '';
 
 if ($id) {
-    $pdo->exec("DELETE FROM employees WHERE id = $id");
+    $stmt = $pdo->prepare("DELETE FROM employees WHERE id = ?");
+    $stmt->execute([$id]);
 }
 
 header('Location: list.php?department=' . urlencode($department));

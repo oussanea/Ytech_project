@@ -1,6 +1,18 @@
+# Sensitive config — never commit these
 config/database.php
 config/app.php
-config/hr_system.sql
-hashed.php
+
+# SQL dumps — contain real data
 *.sql
+hr_system_backup.sql
+
+# Logs
 *.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

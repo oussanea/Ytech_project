@@ -1,105 +1,138 @@
 /* HR Management System - Styles */
-
 :root {
     --sidebar-width: 250px;
     --navbar-height: 56px;
+    --sidebar-bg: linear-gradient(160deg, #667eea 0%, #764ba2 100%);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
+    overflow-x: hidden;
 }
 
-/* Sidebar */
-/* Sidebar */
-
-
-/* Sidebar header */
+/* ─── Sidebar ──────────────────────────────────────────── */
+.sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    background: var(--sidebar-bg);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
 
 .sidebar-header {
-    padding: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
 }
-
-/* Menu container */
 
 .sidebar .components {
-    padding: 20px 0;
+    padding: 16px 0;
+    flex: 1;
+    overflow-y: auto;
 }
-
-/* Menu item spacing */
 
 .sidebar .components li {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
-/* Links */
-
 .sidebar .components a {
-    padding: 12px 20px;
-    color: rgba(255,255,255,0.9);
-    display: block;
+    padding: 11px 20px;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    gap: 10px;
     text-decoration: none;
     transition: all 0.2s;
     border-left: 4px solid transparent;
+    font-size: 0.95rem;
 }
-
-/* Hover and active effect */
 
 .sidebar .components a:hover,
 .sidebar .components a.active {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border-left: 4px solid white;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border-left-color: #fff;
 }
-
-/* Icons */
 
 .sidebar .components i {
-    margin-right: 10px;
-    width: 20px;
+    width: 18px;
+    text-align: center;
+    font-size: 1rem;
 }
-
-/* Footer */
 
 .sidebar-footer {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
 }
 
-/* Logout link */
+.sidebar-user-info {
+    margin-bottom: 10px;
+}
 
 .sidebar-footer a {
-    color: #ff4d4d !important;
+    color: #ff6b6b !important;
     text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
-#sidebar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+
+.sidebar-footer a:hover {
+    color: #ff4d4d !important;
 }
-/* Main content */
+
+/* ─── Mobile Overlay ────────────────────────────────────── */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1039;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* ─── Main content ──────────────────────────────────────── */
 .main-content {
     margin-left: var(--sidebar-width);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     width: calc(100% - var(--sidebar-width));
+    transition: margin-left 0.3s ease, width 0.3s ease;
 }
 
 .content-wrapper {
     flex: 1;
 }
 
-/* Top navbar */
+/* ─── Top Navbar ────────────────────────────────────────── */
 .top-navbar {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-/* Cards */
+/* ─── Cards ─────────────────────────────────────────────── */
 .card {
     border: none;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border-radius: 10px;
 }
 
 .card-stat {
@@ -109,29 +142,62 @@ body {
 .card-stat.primary { border-left-color: #3498db; }
 .card-stat.success { border-left-color: #2ecc71; }
 .card-stat.warning { border-left-color: #f39c12; }
-.card-stat.info { border-left-color: #9b59b6; }
+.card-stat.info    { border-left-color: #9b59b6; }
 
-/* Department cards */
+/* ─── Department cards ──────────────────────────────────── */
 .department-card {
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 .department-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
-/* Responsive - collapse sidebar */
-@media (max-width: 768px) {
+/* ─── Tables ─────────────────────────────────────────────── */
+.table-responsive {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Responsive — Mobile (<768px) ─────────────────────── */
+@media (max-width: 767.98px) {
+
+    /* Hide sidebar off-screen */
     .sidebar {
-        margin-left: calc(-1 * var(--sidebar-width));
+        transform: translateX(calc(-1 * var(--sidebar-width)));
     }
 
+    /* Show when toggled */
     .sidebar.active {
-        margin-left: 0;
+        transform: translateX(0);
     }
 
+    /* Main content fills full width */
     .main-content {
-        margin-left: 0;
-        width: 50%;
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Stat cards — 2 columns on small screens */
+    .card-stat .card-body h3 {
+        font-size: 1.6rem;
+    }
+
+    /* Content padding */
+    .content-wrapper {
+        padding: 1rem !important;
+    }
+
+    /* Forms fill full width */
+    .card[style*="max-width"] {
+        max-width: 100% !important;
+    }
+}
+
+/* ─── Responsive — Tablet (768px–991px) ────────────────── */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    :root {
+        --sidebar-width: 220px;
     }
 }
