@@ -17,14 +17,11 @@ Surveille en temps réel tous les serveurs de Ytech Solutions.
 ### Zabbix Dashboard
 ```
 https://192.168.56.30:8443
-Username : Admin
-Password : zabbix
 ```
 
 ### Bitwarden
 ```
 https://192.168.56.30:8444
-Email : admin@ytech.com
 ```
 
 ## Serveurs surveillés
