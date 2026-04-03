@@ -28,10 +28,10 @@ https://192.168.56.30:8444
 
 | Host | IP | Rôle | Status |
 |---|---|---|---|
-| VM1-Chatbot-CRUD | 192.168.56.20 | Chatbot + App CRUD RH | ✅ Vert |
+| App-Server | 192.168.56.20 | Chatbot + App CRUD RH | ✅ Vert |
 | MariaDB-Server | 192.168.56.25 | Base de données | ✅ Vert |
-| MGMT-Zabbix | 192.168.56.30 | Monitoring + Sécurité | ✅ Vert |
-| AppWeb-Meryem | 192.168.10.21 | App Web commerciale | ✅ Vert |
+| Monitoring-Server | 192.168.56.30 | Monitoring + Sécurité | ✅ Vert |
+| Web-Server | 192.168.10.21 | App Web commerciale | ✅ Vert |
 
 ## Installation
 
