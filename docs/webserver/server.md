@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Rapport d'Ingénierie Ytech'
+sidebar_label:  "Rapport  Ytech"
 sidebar_position: 1
 ---
 
