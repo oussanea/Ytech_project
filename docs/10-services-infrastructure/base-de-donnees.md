@@ -64,6 +64,11 @@ Chatbot YtechBot           →  ytech_chatbot → chatbot  (ALL sur sa base uniq
 
 > Si un attaquant compromet l'application web et accède à `web_user`, il ne peut voir **que** `db_clients` — jamais les données RH ni le chatbot. La compromission est **cloisonnée**.
 
+
+![MariaDB — docker ps sur VM2](./img/bds.png)
+*Les 3 bases de données sur MariaDB*
+
+
 ---
 
 ### Base `ytech_chatbot`
@@ -82,6 +87,8 @@ GRANT ALL ON ytech_chatbot.* TO 'chatbot'@'192.168.56.20';
 -- conversations  : historique avec soft delete
 -- messages       : échanges user/assistant
 ```
+![Tables Chatbot](./img/chatbot_bd.png)
+*Tables de la base de données du Chatbot*
 
 ---
 
@@ -101,6 +108,9 @@ GRANT SELECT, INSERT, UPDATE, DELETE
 -- employees : nom, prénom, poste, salaire, département
 -- departments : liste des départements
 ```
+![Tables Employes](./img/rh_db.png)
+
+*Tables de la base de données des Employés*
 
 :::danger Données RH — Sensibilité maximale
 La base `ytech_rh` contient des **données personnelles** au sens du RGPD (salaires, contrats, informations privées). Elle est accessible **uniquement** depuis l'APP Server via l'utilisateur `rh_user` — jamais directement depuis un poste utilisateur.
@@ -125,6 +135,9 @@ GRANT SELECT, INSERT, UPDATE
 -- orders    : packs commandés, statut
 -- products  : catalogue packs web
 ```
+![Tables Clients](./img/web_db.png)
+
+*Tables de la base de données des Clients*
 
 ---
 

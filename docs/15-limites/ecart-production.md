@@ -4,8 +4,6 @@ title:  Écart avec la Production
 sidebar_position: 3
 ---
 
-## 16.3 Écart avec la Production
-
 ### Comparaison Simulation vs Production
 
 | Composant | Notre simulation | Production réelle |
@@ -43,7 +41,7 @@ graph LR
 
 ---
 
-## 16.4 Risques résiduels identifiés
+## Risques résiduels identifiés
 
 | Risque | Probabilité | Impact | Mitigation |
 |---|---|---|---|

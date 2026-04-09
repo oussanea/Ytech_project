@@ -72,7 +72,6 @@ https://github.com/oussanea/Ytech_project
 | `hr-crud-app-feature` | Application CRUD RH |
 | `feature/hardening` | Hardening Ubuntu + OPNSense |
 | `app-ecommerce` | App Web Laravel + Wazuh |
-| `feature/network` | Cisco + Grafana SOC Dashboard |
 
 ---
 

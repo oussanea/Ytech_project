@@ -52,10 +52,8 @@ Ytech_project/
 │
 ├── hr-crud-app-feature  # Branche Sara — App CRUD RH
 ├── feature/hardening            # Branche Asmaa — OPNSense + Hardening
-├── app_ecommerce              # Branche Meryem — Laravel + Wazuh
-└── feature/network              # Branche Chaima — Packet Tracer + Grafana
+└── app_ecommerce                # Branche Meryem — Laravel
 ```
-
 ---
 
 ## Stratégie de branches
@@ -73,8 +71,7 @@ Toutes les branches suivent la convention **`feature/<composant>`** :
 | `feature/monitoring` | Raja | Zabbix + Bitwarden + Nessus + Headscale + Grafana |
 | `feature/hr-crud-app-feature` | Sara | Application CRUD RH PHP |
 | `feature/hardening` | Asmaa | Hardening Ubuntu + OPNSense + WireGuard |
-| `feature/webapp` | Meryem | Laravel + ModSecurity WAF + Wazuh |
-| `feature/network` | Chaima | Simulation Packet Tracer + Architecture réseau |
+| `feature/app-ecommerce` | Meryem | Laravel + ModSecurity WAF + Wazuh |
 
 ### Pourquoi une branche par membre ?
 

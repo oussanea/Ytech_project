@@ -62,11 +62,11 @@ La configuration Docker Compose complète est documentée dans la section [DevOp
 
 ## Interface et fonctionnalités
 
-![Bitwarden — Dashboard principal](./img/bitwarden-dashboard.png)
-*Dashboard Bitwarden (Vaultwarden) — coffre centralisé de l'équipe Ytech*
+![Bitwarden — interface utilisateur vaultwarden](./interface_bitwarden.png)
+*Interface Utilisateur Vaultwarden*
 
-![Bitwarden — Organisation et collections](./img/bitwarden-collections.png)
-*Collections organisées par catégorie — serveurs, bases de données, interfaces web*
+![Bitwarden — Dashboard principal](./bitwarden-dashboard.png)
+*Dashboard Bitwarden (Vaultwarden) — coffre centralisé de l'équipe Ytech*
 
 ### Organisation des credentials
 
@@ -145,7 +145,8 @@ Bitwarden facilite la **rotation régulière** des credentials :
 - Tous les membres de la collection voient automatiquement le nouveau credential
 
 ---
-
+![Bitwarden — Organisation et collections](./membres_bitwarden.png)
+*Membres de Ytechs Solutions- Acces Vaultwarden*
 ## Argumentation du choix
 
 ### Pourquoi pas KeePass ou LastPass ?
@@ -165,12 +166,3 @@ LastPass a subi une **violation majeure en 2022** où des coffres chiffrés ont 
 > 💶 **Valeur ajoutée** : En cas d'audit de sécurité ou de certification ISO 27001, la présence d'un gestionnaire de mots de passe centralisé et auto-hébergé est un **point fort systématiquement valorisé**. C'est l'un des contrôles les plus simples à mettre en place et les plus efficaces pour réduire le risque de compromission par credentials faibles ou réutilisés.
 
 ---
-
-## Images à fournir
-
-Pour compléter cette page, les screenshots suivants sont nécessaires :
-
-| Fichier | Contenu |
-|---|---|
-| `bitwarden-dashboard.png` | Dashboard principal — coffre avec les collections |
-| `bitwarden-collections.png` | Vue des collections organisées par catégorie |

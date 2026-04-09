@@ -92,7 +92,8 @@ Sans corrélation, chaque outil voit une partie du tableau :
 
 ## Vue unifiée Grafana
 
-![Grafana — Vue corrélation multi-sources](./img/grafana-correlation.png)
+![Grafana — Vue corrélation multi-sourcest](./img/grafana-soc-dashboard.png)
+![Grafana — Vue corrélation multi-sources](./img/grafana-soc-dashboard1.png)
 *Dashboard Grafana — corrélation Zabbix + Wazuh + Nessus + Headscale en temps réel*
 
 Le dashboard SOC est organisé pour faciliter la corrélation visuelle :

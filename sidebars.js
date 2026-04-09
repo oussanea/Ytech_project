@@ -234,17 +234,5 @@ module.exports = {
       ],
     },
 
-    {
-      type: 'category',
-      label: '20. Annexes',
-      items: [
-        'annexes/plan-ip',
-        'annexes/tableau-ports',
-        'annexes/urls-acces',
-        'annexes/commandes-utiles',
-        'annexes/captures',
-        'annexes/glossaire',
-      ],
-    },
   ],
 }

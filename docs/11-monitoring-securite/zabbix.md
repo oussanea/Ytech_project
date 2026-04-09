@@ -48,7 +48,7 @@ Le dashboard affiche en temps réel :
 
 ## Hosts surveillés
 
-Zabbix surveille **4 hosts** via des agents installés sur chaque VM :
+Zabbix surveille **5 hosts** via des agents installés sur chaque VM :
 
 ![Zabbix — Liste des hosts](./img/zabbix-hosts.png)
 *Tous les hosts Ytech Solutions en statut vert — infrastructure opérationnelle*
@@ -56,9 +56,10 @@ Zabbix surveille **4 hosts** via des agents installés sur chaque VM :
 | Host | IP surveillée | Services | Statut |
 |---|---|---|---|
 | VM1-APP-Server | `192.168.56.20` | YtechBot + CRUD RH + Ollama | ✅ Vert |
-| VM2-DB-Server | `192.168.56.25` | MariaDB | ✅ Vert |
-| VM3-MGMT | `192.168.56.30` | Monitoring complet | ✅ Vert |
-| Web-Server-Meryem | `192.168.10.21` | Laravel + WAF | ✅ Vert |
+| VM2-MariaDB-Server | `192.168.56.25` | MariaDB | ✅ Vert |
+| VM3-MGMT-Server | `192.168.56.30` | Monitoring complet | ✅ Vert |
+| Web-Server | `192.168.10.21` | Laravel + WAF | ✅ Vert |
+| Backup-Server | `192.168.9.251` | Sauvegardes chiffrées AES-256 | ✅ Vert |
 
 ### Installation de l'agent Zabbix
 
@@ -136,7 +137,6 @@ Les données Zabbix sont remontées dans le **Grafana SOC Dashboard** via le plu
 ```
 Zabbix Server → Grafana Data Source → SOC Dashboard
 URL : https://192.168.56.30:8443/api_jsonrpc.php
-Auth : user grafana / pass Raja@2003
 ```
 
 Les panels Grafana alimentés par Zabbix :

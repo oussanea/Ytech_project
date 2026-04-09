@@ -59,11 +59,12 @@ La configuration Docker Compose complète et les étapes de déploiement sur Ubu
 
 ### Interface utilisateur
 
+![YtechBot — Page de login](./img/ytechbot-login.png)
+![YtechBot — Page de signup](./img/ytechbot-login1.png)
+*Page d'authentification avec protection anti brute-force*
+
 ![YtechBot — Interface principale](./img/ytechbot-interface.png)
 *Interface de chat YtechBot — accessible via HTTPS depuis le réseau interne*
-
-![YtechBot — Page de login](./img/ytechbot-login.png)
-*Page d'authentification avec protection anti brute-force*
 
 ### Fonctionnalités disponibles
 
@@ -119,6 +120,10 @@ RATE_LIMIT = 10  # messages par minute
 # avant envoi à Ollama et stockage BDD
 # Protection contre les prompt injections
 ```
+
+### HTTPS TLS
+![Certificat SSL avec OpenSSL](./img/shttps1.png)
+*Génération du certificat SSL avec OpenSSL*
 
 ### Tableau récapitulatif sécurité
 

@@ -37,6 +37,8 @@ La configuration complète Docker Compose de Grafana est documentée dans la sec
 ## Dashboard SOC — Vue globale
 
 ![Grafana — SOC Dashboard complet](./img/grafana-soc-dashboard.png)
+![Grafana — SOC Dashboard complet](./img/grafana-soc-dashboard1.png)
+![Grafana — SOC Dashboard complet](./img/grafana-soc-dashboard2.png)
 *Grafana SOC Dashboard — vue unifiée de la posture de sécurité Ytech Solutions*
 
 Le dashboard est organisé en **7 panels** couvrant l'ensemble de la surface de supervision :
@@ -63,7 +65,7 @@ Le dashboard est organisé en **7 panels** couvrant l'ensemble de la surface de 
 ```
 Plugin  : alexanderzobnin-zabbix-app
 URL     : https://127.0.0.1:8443/api_jsonrpc.php
-Auth    : user: grafana / pass: Raja@2003
+Auth    : user: ****** / pass: *****
 TLS     : Skip verify (certificat auto-signé)
 ```
 
@@ -99,9 +101,6 @@ Headers : Authorization: Bearer <api_key>
 ## Panels en détail
 
 ### Panel 1 — Security Score
-
-![Grafana — Security Score](./img/grafana-security-score.png)
-*Panel Security Score — score calculé à partir des alertes Wazuh*
 
 Le Security Score est une **jauge de 0 à 100** calculée à partir du nombre et de la sévérité des alertes Wazuh actives :
 

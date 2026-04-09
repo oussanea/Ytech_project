@@ -8,7 +8,8 @@ sidebar_position: 5
 
 ## Vue d'ensemble
 
-L'infrastructure de Ytech Solutions repose sur **3 serveurs principaux** hébergés sur le PC de Raja, plus les serveurs additionnels hébergés par Meryem. Tous les services sont conteneurisés avec Docker pour garantir l'isolation, la reproductibilité et la facilité de gestion.
+L'infrastructure de Ytech Solutions repose sur **6 serveurs principaux**: 3 serveurs hébergés sur le PC de Raja, plus les serveurs additionnels hébergés par Meryem. Tous les services sont conteneurisés avec Docker pour garantir l'isolation, la reproductibilité et la facilité de gestion.
+
 
 > 💶 **Dimension financière** : La conteneurisation Docker représente un gain considérable en temps de déploiement et de maintenance. Un déploiement manuel de tous ces services prendrait plusieurs jours par serveur. Avec Docker Compose, l'ensemble est déployé en **moins d'une heure**, reproductible à l'identique sur n'importe quelle machine. En entreprise, ce gain se traduit directement en **réduction des coûts d'exploitation**.
 
@@ -109,18 +110,83 @@ Configuration Docker Compose complète (Zabbix, Bitwarden, Nessus, Headscale, Gr
 
 ---
 
+### 🌐 Web Server (DMZ)
+
+| Attribut | Valeur |
+|---|---|
+| **OS** | Ubuntu |
+| **IP** | 192.168.10.21 |
+| **VLAN** | DMZ |
+| **Rôle** | Hébergement App Web Laravel |
+
+### Services
+
+- Application Laravel (site commercial)
+- Nginx
+- WAF ModSecurity
+- Certificat HTTPS
+
+### Sécurité
+
+- Accessible depuis Internet uniquement via HTTPS
+- Protégé par WAF (filtrage attaques web)
+- Aucun accès direct à la base de données
+
+---
+
+### 🔥 Firewall OPNsense
+
+| Rôle | Description |
+|---|---|
+| **Firewall principal** | Filtrage des flux réseau |
+| **Segmentation** | Gestion des VLANs |
+| **NAT** | Accès Internet contrôlé |
+| **Sécurité** | Blocage accès non autorisés |
+
+👉 OPNsense constitue le cœur de la sécurité réseau et contrôle toutes les communications entre VLANs.
+
+---
+
+### 🛡️ Bastion SSH
+
+| Rôle | Description |
+|---|---|
+| **Accès admin sécurisé** | Point d’entrée unique SSH |
+| **Sécurité** | Authentification par clé |
+| **Contrôle** | Journalisation des connexions |
+
+👉 Aucun accès SSH direct aux serveurs internes n’est autorisé.
+
+---
+
+### 💾 Serveur Backup
+
+| Rôle | Description |
+|---|---|
+| **Sauvegarde** | Stockage des backups |
+| **Stratégie** | Règle 3-2-1 |
+| **Sécurité** | Accès restreint |
+
+👉 Protège contre :
+- perte de données
+- ransomware
+- panne serveur
+
+---
+
 ## Monitoring de l'infrastructure
 
 ### Zabbix — Hosts surveillés
 
 Zabbix surveille en temps réel l'ensemble des serveurs via des agents installés sur chaque VM :
 
-| Host Zabbix | IP surveillée | Rôle | Statut |
-|---|---|---|---|
-| VM1-APP-Server | `192.168.56.20` | Chatbot + CRUD RH | ✅ Vert |
-| VM2-DB-Server | `192.168.56.25` | MariaDB | ✅ Vert |
-| VM3-MGMT | `192.168.56.30` | Monitoring | ✅ Vert |
-| Web-Server-Meryem | `192.168.10.21` | Laravel + WAF | ✅ Vert |
+| Host Zabbix | IP surveillée | Rôle & Services | Statut |
+| :--- | :--- | :--- | :--- |
+| **VM1-APP-Server** | 192.168.56.20 | Chatbot (8501) + CRUD RH (8443) | ✅ Vert |
+| **VM2-MariaDB-Server** | 192.168.56.25 | MariaDB (3306) | ✅ Vert |
+| **VM3-MGMT-Server** | 192.168.56.30 | Zabbix, Bitwarden, Nessus, Headscale | ✅ Vert |
+| **Web-Server** | 192.168.10.21 | Vitrine Laravel + Nginx + WAF | ✅ Vert |
+| **Backup-Server** | 192.168.9.251 | Sauvegardes chiffrées AES-256 | ✅ Vert |
 
 ![Zabbix — Dashboard hosts](./img/zabbix-hosts-dashboard.png)
 *Dashboard Zabbix — tous les hosts en statut vert*

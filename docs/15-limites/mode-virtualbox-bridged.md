@@ -4,8 +4,6 @@ title: Limites VirtualBox (Bridged vs Host-Only)
 sidebar_position: 2
 ---
 
-## 16.2 Limites VirtualBox (Bridged vs Host-Only)
-
 ### Problème principal : double réseau
 
 Notre infrastructure utilise **deux interfaces réseau par VM** :

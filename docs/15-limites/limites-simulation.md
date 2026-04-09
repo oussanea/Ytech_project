@@ -11,7 +11,7 @@ sidebar_position: 1
 
 ---
 
-## 16.1 Limites de la Simulation
+## Limites de la Simulation
 
 ### Vue d'ensemble
 

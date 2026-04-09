@@ -1,8 +1,8 @@
 ---
 id: conclusion-generale
-title: 18. Conclusion
-sidebar_label: Conclusion
-sidebar_position: 1
+sidebar_label: Conclusion Generale
+sidebar_position: 18
+description: Conclusion générale du projet Ytech Solutions — Infrastructure Réseau Sécurisée, JobInTech Casablanca 2025.
 ---
 
 # 🏁 Conclusion Générale
@@ -56,7 +56,7 @@ Ce projet n'est pas une fin en soi. Il pose les fondations d'une démarche de s�
 
 ---
 
-**Équipe Ytech Solutions — Groupe 5**
+**Équipe Ytech Solutions — Groupe 4**
 
 | Membre | Rôle principal |
 |---|---|
@@ -64,6 +64,6 @@ Ce projet n'est pas une fin en soi. Il pose les fondations d'une démarche de s�
 | Asmaa | Hardening + OPNSense + Sécurité |
 | Sara | App CRUD RH + Nessus + Headscale |
 | Meryem | App Web + Wazuh + Backup |
-| Chaima | GNS3 + Grafana Dashboard |
+| Chaima | Cisco + Grafana Dashboard |
 
 *JobInTech Casablanca 2025 — Projet Final Cybersécurité*

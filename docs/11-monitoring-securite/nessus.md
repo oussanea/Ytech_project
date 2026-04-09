@@ -14,6 +14,9 @@ C'est comme faire appel à un expert en sécurité qui passe en revue chaque por
 
 Dans notre projet, Nessus a été utilisé à **deux moments clés** : avant la sécurisation pour identifier les failles de l'infrastructure initiale, et après pour mesurer l'efficacité des mesures déployées.
 
+![Nessus — Scans Nessus](./img/scans_nessus.png)
+*Les 2 scans Nessus*
+
 > 💶 **Dimension financière** : Nessus Professional coûte **4 708 $/an**. La version **Nessus Essentials** utilisée ici est **gratuite** (limitée à 16 IPs — suffisant pour notre infrastructure). Un pen-test professionnel externe coûte entre **5 000 € et 20 000 €**. Nessus nous permet de réaliser des scans équivalents en interne, à la demande, pour 0 €.
 
 ---
@@ -95,19 +98,13 @@ Suite aux résultats du scan initial, les mesures suivantes ont été déployée
 ![Nessus — Résultats scan après sécurisation](./img/nessus-scan-apres.png)
 *Nessus scan post-sécurisation — réduction drastique des vulnérabilités*
 
-![Nessus — Liste vulnérabilités restantes](./img/nessus-vulnerabilities.png)
-*Vulnérabilités résiduelles après sécurisation*
 
 | Sévérité | Avant | Après | Réduction |
 |---|---|---|---|
 | 🔴 Critical | X | 0 | **-100%** |
-| 🟠 High | X | 0-1 | **-90%+** |
-| 🟡 Medium | X | X | **-XX%** |
-| 🔵 Low | X | X | **-XX%** |
-
-:::note Screenshots
-Compléter le tableau avec les chiffres exacts de tes deux scans. La comparaison avant/après est l'un des éléments les plus percutants pour le jury.
-:::
+| 🟠 High | X | 0 | **-100%** |
+| 🟡 Medium | X | 1 | **-XX%** |
+| 🔵 Low | X | 1 | **-XX%** |
 
 ---
 
