@@ -1,52 +1,111 @@
 ---
-sidebar_position: 1
-slug: /
+id: PagedeGarde
+title: Ytech Solutions
 ---
 
-# 🛡️ Rapport de Projet : Ytech Solutions
+<div className="page-garde">
 
-<div align="center">
-  <br />
-  <p style={{fontSize: '1.5rem', fontWeight: 'bold'}}>Infrastructure Réseau et Sécurité</p>
-  <p>Projet Final JobInTech Cybersécurité - Casablanca</p>
-  <br />
+# 🔒 Ytech Solutions
+## Infrastructure Réseau Sécurisée
+
+<div className="badge-container">
+  <span className="badge badge--primary">JobInTech Casablanca 2025</span>
+  <span className="badge badge--success">Cybersécurité</span>
+  <span className="badge badge--info">Groupe 5</span>
 </div>
 
 ---
 
-### 👥 Équipe de Projet
-* **Meriem**
-* **Asmaa**
-* **Chaimaa**
-* **Sara**
-* **Rajaa**
+## 🏢 Contexte
+
+> Conception, déploiement et sécurisation d'une infrastructure réseau complète pour **Ytech Solutions** — entreprise fictive de services numériques, 24 employés, 6 départements.
 
 ---
 
-### 🏢 Présentation de l'Entreprise
-* **Nom :** Ytech Solutions 
-* **Secteur d'activité :** Services numériques et développement web  
-* **Effectif total :** 24 employés 
-* **Objectif principal :** Mise en place d'une infrastructure sécurisée, segmentée, supervisée et conforme aux bonnes pratiques ISO 27001 
+## 👥 Équipe
+
+| Membre | Rôle |
+|---|---|
+| **Raja JARFANI** | Chef de projet · Chatbot IA · MariaDB · Monitoring · DevOps |
+| **Asmaa** | Hardening · OPNSense · WireGuard · Suricata |
+| **Sara** | App CRUD RH · Nessus · Headscale agents |
+| **Meryem** | App Web Laravel · WAF · Wazuh SIEM · Backup |
+| **Chaima** | Simulation Packet Tracer · Architecture · Grafana SOC |
 
 ---
 
-### 🎯 Objectifs du Projet
-1.  **Hébergement :** Application web commerciale (Vente de packs)
-2.  **Développement :** Application CRUD dédiée au département RH
-3.  **Sécurisation :** Hardening des machines et services
-4.  **Simulation :** Configuration fonctionnelle via GNS3 ou Packet Tracer
-5.  **DevOps :** Gestion de code (GitHub/GitLab) et pratiques CI/CD
+## 🛠️ Stack technique
+
+<div className="stack-grid">
+
+**Réseau & Sécurité**
+- OPNSense · Suricata IDS/IPS · WireGuard
+- Headscale / Tailscale (Zero Trust)
+- Cisco Packet Tracer · 7 VLANs
+
+**Applications**
+- Laravel · PHP 8.1 · MariaDB
+- Streamlit · Ollama · llama3.2:1b
+- Docker Compose
+
+**Supervision**
+- Zabbix · Wazuh SIEM
+- Grafana SOC · Nessus
+- Bitwarden (Vaultwarden)
+
+**DevOps**
+- GitHub · Docker · Docusaurus
+- Jira · Backup 3-2-1 · AES-256
+
+</div>
 
 ---
 
-### 🛠️ Stack Technique Prévue
-* **Système :** Linux (Debian/Ubuntu)
-* **Serveur Web :** Apache ou Nginx avec HTTPS
-* **Base de données :**  MySQL
-* **Sécurité :** Scan de vulnérabilités (Nessus), Monitoring (Zabbix), Firewall (OPNSense/PfSense)
+## 📊 Chiffres clés
+
+| Indicateur | Valeur |
+|---|---|
+| VLANs déployés | 7 |
+| Services conteneurisés | 12+ |
+| Risques traités | 15 |
+| Réduction surface d'attaque | ~75% |
+| Coût licences stack complète | **0 €** |
+| Risque financier évité | **> 540 000 €** |
+| Durée du projet | 5 semaines |
+| Conformité | ISO/IEC 27001 |
 
 ---
-<div align="right">
-  <p><em>Réalisé dans le cadre de la formation JobInTech 2026</em></p>
+
+## 🗂️ Navigation
+
+| Section | Contenu |
+|---|---|
+| [01. Introduction](/introduction/presentation-projet) | Présentation projet, équipe, objectifs |
+| [02. Cahier des charges](/cahier-des-charges/besoins-fonctionnels) | Besoins, exigences, contraintes |
+| [03. Analyse des risques](/analyse-risques/methodologie-iso) | ISO 27005, EBIOS RM, matrice risques |
+| [04. Architecture initiale](/architecture-initiale/description) | Infra de départ, faiblesses identifiées |
+| [05. Pentest](/pentest/introduction) | Tests d'intrusion avant / après |
+| [06. Architecture cible](/architecture-cible/vision-globale) | VLAN, DMZ, Zero Trust, schéma final |
+| [07. Firewall OPNsense](/firewall-opnsense/installation) | Config firewall, règles, IDS/IPS |
+| [08. Gestion des accès](/gestion-acces/modelisation-roles) | RBAC, Bitwarden, moindre privilège |
+| [09. VPN & Zero Trust](/vpn-zero-trust/wireguard) | WireGuard, Headscale/Tailscale |
+| [10. DevOps](/devops/github-organisation) | GitHub, Docker Compose, déploiement |
+| [11. Services](/services-infrastructure/chatbot-ytechbot) | YtechBot, CRUD RH, Laravel, MariaDB |
+| [12. Monitoring](/monitoring-securite/zabbix) | Zabbix, Wazuh, Grafana SOC, Nessus |
+| [13. Hardening](/hardening/hardening-linux) | Durcissement Linux, WAF, SSH |
+| [14. Sauvegarde](/sauvegarde-resilience/strategie-3-2-1) | Backup 3-2-1, AES-256, rclone |
+| [20. Annexes](/annexes/plan-ip) | Plan IP, ports, commandes, glossaire |
+
+---
+
+<div className="footer-garde">
+
+**Formation** : JobInTech — Cybersécurité · **Ville** : Casablanca · **Année** : 2025
+
+**Dépôt GitHub** : [github.com/oussanea/Ytech_project](https://github.com/oussanea/Ytech_project)
+
+**Documentation générée avec** [Docusaurus](https://docusaurus.io)
+
+</div>
+
 </div>
