@@ -20,7 +20,7 @@ Le projet a été réalisé par une équipe de **5 membres**, chacun responsable
 | **Asmaa** | Hardening Ubuntu + OPNSense + WireGuard + Suricata | `feature/hardening` |
 | **Sara** | App CRUD RH + Nessus + Headscale agents | `hr-crud-app-feature` |
 | **Meryem** | App Web Laravel + Wazuh SIEM + Backup | `app-ecommerce` |
-| **Chaima** | Achitecture Améliorée + Cisco + Grafana SOC Dashboard | `feature/network` |
+| **Chaymae** | Achitecture Améliorée + Cisco + Grafana SOC Dashboard | `feature/network` |
 
 ---
 
@@ -53,7 +53,7 @@ Le projet a été réalisé par une équipe de **5 membres**, chacun responsable
 - Installation et configuration de **Wazuh SIEM** (manager + agents)
 - Mise en place du **serveur de backup** (règle 3-2-1, AES-256, rclone Google Drive)
 
-### Chaima
+### Chaymae
 - Simulation réseau avec **Cisco** (topologie VLAN complète)
 - Conception et déploiement du **Grafana SOC Dashboard** (sources : Zabbix + Wazuh + Nessus + Headscale)
 
