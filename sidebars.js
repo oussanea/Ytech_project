@@ -179,9 +179,9 @@ module.exports = {
       label: '14. Sauvegarde & résilience',
       items: [
         'sauvegarde-resilience/strategie-3-2-1',
-        'sauvegarde-resilience/scripts-backup',
-        'sauvegarde-resilience/stockage-externe',
-        'sauvegarde-resilience/securisation-backup',
+        'sauvegarde-resilience/script-backup',
+        'sauvegarde-resilience/Stockage-Externe',
+        'sauvegarde-resilience/Sécurisation-des-Sauvegardes',
       ],
     },
 

@@ -3,20 +3,21 @@ id: intro-vpn
 title: VPN & Zero Trust
 sidebar_position: 1
 ---
-
 # 🔐 VPN & Zero Trust
 
-Cette section décrit la mise en place du VPN WireGuard et l’approche Zero Trust adoptée dans l’architecture Ytech.
+Cette section présente la mise en place du VPN basé sur WireGuard ainsi que l’implémentation du modèle Zero Trust au sein de l’architecture Ytech.
 
-## Objectifs
+L’objectif est de garantir un accès sécurisé aux ressources internes tout en contrôlant strictement les communications entre les différents acteurs du système.
 
-- Accès distant sécurisé
-- Contrôle des accès utilisateurs
-- Application du principe du moindre privilège
-- Sécurisation des communications
+### 🎯 Objectifs
 
-## Contenu
+- Assurer un accès distant sécurisé aux services internes  
+- Contrôler les accès en fonction des rôles utilisateurs  
+- Appliquer le principe du moindre privilège  
+- Sécuriser les communications via des connexions chiffrées  
 
-- Configuration du VPN WireGuard
-- Architecture d’accès
-- Politiques de sécurité
+### 📂 Contenu de la section
+
+- Configuration du VPN (WireGuard / NetBird / Headscale)  
+- Architecture d’accès  
+- Politiques de sécurité (ACL)  
