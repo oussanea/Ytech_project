@@ -72,7 +72,6 @@ Sécuriser les postes de travail des employés, qui sont la première cible des 
 | **Amélioration** | +50 % ✅ |
 
 ### Captures
-> 📷 
 ![Avant hardening Windows](windows/windows-audit-before-after.png.png)
 ## 🐉 Kali Linux — Poste IT
 
