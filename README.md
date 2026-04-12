@@ -104,6 +104,7 @@ Sécuriser la machine de l'administrateur IT. Si ce poste est compromis, toute l
 
 ### Captures
 kaliavant.png
+
 kaliapres.png
 ## 🐧 Ubuntu Server — Serveurs
 
