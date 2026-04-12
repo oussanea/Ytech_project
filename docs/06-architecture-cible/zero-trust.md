@@ -76,13 +76,13 @@ docker exec headscale headscale nodes tag -i 8 --tags "tag:hr"
 docker exec headscale headscale nodes tag -i 9 --tags "tag:ceo"
 ```
 
-![Liste des nœuds Headscale — état initial](../../09-vpn-zero-trust/handscale.png)
+![Liste des nœuds Headscale — état initial](./handscale.png)
 *Tous les nœuds connectés et leurs adresses IP Tailscale*
 
-![Après assignation des tags](../../09-vpn-zero-trust/handscale%20-laststeps.png)
+![Après assignation des tags](./handscale-laststeps.png)
 *Tags assignés à chaque nœud selon son rôle*
 
-![État final du réseau Headscale](../../09-vpn-zero-trust/headscale-last-p.png)
+![État final du réseau Headscale](./headscale-last-p.png)
 *État final — 11 nœuds connectés avec leurs tags (docker exec headscale headscale nodes list)*
 
 ---
@@ -133,18 +133,12 @@ Le Zero Trust applique strictement le principe du **moindre privilège**. Les r�
 
 ## 🎯 Démonstration Zero Trust en Action
 
-### Accès refusé — Finance vers App RH
-
-Le nœud `finance-user` tente d'accéder à l'application RH. Les règles ACL bloquent la connexion au niveau réseau, même si l'utilisateur est connecté au VPN.
-
-![Accès refusé pour finance-user — Zero Trust ACL en action](../../09-vpn-zero-trust/finance-crude.png)
-*Finance n'a pas accès à l'App RH — bloqué par ACL malgré la connexion VPN*
 
 ### Accès autorisé — CEO vers App RH
 
 Le Directeur Général (CEO) dispose d'un accès en lecture seule à l'application CRUD RH.
 
-![Accès CEO autorisé vers App RH](../../09-vpn-zero-trust/ceo-crude.png)
+![Accès CEO autorisé vers App RH](./ceo-crude.png)
 *CEO peut consulter les employés mais ne peut pas modifier — principe du moindre privilège*
 
 :::info Zero Trust en action
