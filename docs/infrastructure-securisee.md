@@ -18,23 +18,6 @@ L'infrastructure finale repose sur une **segmentation réseau en 6 VLANs** avec 
 
 ![Diagramme infrastructure sécurisée](./img/infa_correcte.png)
 
-### Topologie réseau
-
-```
-Internet (ISP1 Principal + ISP2 Backup)
-           │
-      [OPNsense]          ← Firewall + NAT + ACL inter-VLAN + WireGuard
-           │ Gig0/2 — TRUNK 802.1Q (tous VLANs)
-     [2811 Router]        ← Router-on-a-Stick (sous-interfaces)
-           │ Gig0/2
-    [CORE-SWITCH]         ← 2960-24TT (distribution centrale)
-    ┌──────┼──────┐
-  Fa0/4  Fa0/2  Fa0/3
-    │      │      │
-[SW1-DMZ] [SW2-SERVER] [SW3-USERS]
-VLAN 10  VL20+25+30+60  VL40+50
-```
-
 ### Tableau des VLANs
 
 | VLAN | Nom | Réseau | Contenu |
