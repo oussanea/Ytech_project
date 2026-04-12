@@ -73,9 +73,7 @@ Sécuriser les postes de travail des employés, qui sont la première cible des 
 
 ### Captures
 > 📷 
-
-windows-audit-before-after.png
-
+![Avant hardening Windows](windows/windows-audit-before-after.png.png)
 ## 🐉 Kali Linux — Poste IT
 
 ### Objectif
@@ -103,9 +101,8 @@ Sécuriser la machine de l'administrateur IT. Si ce poste est compromis, toute l
 | **Amélioration** | 18 % ✅ |
 
 ### Captures
-kaliavant.png
-
-kaliapres.png
+![Avant hardening Kali](kali/kaliavant.png)
+![Après hardening Kali](kali/kaliapres.png)
 ## 🐧 Ubuntu Server — Serveurs
 
 ### Objectif
@@ -134,8 +131,8 @@ Protéger les serveurs critiques de l'infrastructure (Web, Base de données, SIE
 | **Amélioration** | +23 % ✅ |
 
 ### Captures
-ubuntuavant.png
-ubuntuapres.png
+![Avant hardening Ubuntu](ubuntu/ubuntuavant.png)
+![Après hardening Ubuntu](ubuntu/ubuntuapres.png)
 ---
 
 ## 📊 Résultats globaux
