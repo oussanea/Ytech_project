@@ -132,7 +132,7 @@ module.exports = {
       items: [
         'devops/github-organisation',
         'devops/docker-compose',
-        'devops/deploiement-ubuntu'
+        'devops/deploiement-ubuntu',
       ],
     },
 
@@ -187,13 +187,9 @@ module.exports = {
 
     {
       type: 'category',
-      label: '15. Tests & validation',
+      label: '15. Infrastructure Sécurisée',
       items: [
-        'tests-validation/tests-connectivite',
-        'tests-validation/tests-firewall',
-        'tests-validation/tests-acces',
-        'tests-validation/tests-vpn',
-        'tests-validation/validation-globale',
+        'infrastructure-securisee/infrastructure-securisee',
       ],
     },
 
