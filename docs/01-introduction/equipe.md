@@ -19,7 +19,7 @@ Le projet a été réalisé par une équipe de **5 membres**, chacun responsable
 | **Raja JARFANI** | Chef de projet + Chatbot IA + MariaDB + Monitoring + DevOps | `feature/chatbot-ollama` / `feature/monitoring` |
 | **Asmaa ELKOURTI** | Hardening Ubuntu + OPNSense + WireGuard + Suricata | `feature/hardening` |
 | **Sara OUSSANEA** | App CRUD RH + Nessus + Headscale agents | `hr-crud-app-feature` |
-| **Meryem ASSADI** | App Web Laravel + Wazuh SIEM + Backup | `app-ecommerce` |
+| **Meriem ASSADI** | App Web Laravel + Wazuh SIEM + Backup | `app-ecommerce` |
 | **Chaymae TARIQ** | Achitecture Améliorée + Cisco + Grafana SOC Dashboard | `feature/network` |
 
 ---
@@ -47,7 +47,7 @@ Le projet a été réalisé par une équipe de **5 membres**, chacun responsable
 - Configuration des **agents Tailscale** sur les postes et serveurs
 - Scans de vulnérabilités avec **Nessus** (avant et après sécurisation)
 
-### Meryem ASSADI
+### Meriem ASSADI
 - Développement de l'**application Web commerciale** (Laravel + Nginx)
 - Déploiement du **WAF ModSecurity** avec règles OWASP CRS
 - Installation et configuration de **Wazuh SIEM** (manager + agents)
