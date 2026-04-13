@@ -17,10 +17,10 @@ Le projet a été réalisé par une équipe de **5 membres**, chacun responsable
 | Membre | Rôle principal | Branche GitHub |
 |---|---|---|
 | **Raja JARFANI** | Chef de projet + Chatbot IA + MariaDB + Monitoring + DevOps | `feature/chatbot-ollama` / `feature/monitoring` |
-| **Asmaa** | Hardening Ubuntu + OPNSense + WireGuard + Suricata | `feature/hardening` |
-| **Sara** | App CRUD RH + Nessus + Headscale agents | `hr-crud-app-feature` |
-| **Meryem** | App Web Laravel + Wazuh SIEM + Backup | `app-ecommerce` |
-| **Chaymae** | Achitecture Améliorée + Cisco + Grafana SOC Dashboard | `feature/network` |
+| **Asmaa ELKOURTI** | Hardening Ubuntu + OPNSense + WireGuard + Suricata | `feature/hardening` |
+| **Sara OUSSANEA** | App CRUD RH + Nessus + Headscale agents | `hr-crud-app-feature` |
+| **Meryem ASSADI** | App Web Laravel + Wazuh SIEM + Backup | `app-ecommerce` |
+| **Chaymae TARIQ** | Achitecture Améliorée + Cisco + Grafana SOC Dashboard | `feature/network` |
 
 ---
 
@@ -36,24 +36,24 @@ Le projet a été réalisé par une équipe de **5 membres**, chacun responsable
 - Mise en place du stack monitoring : **Zabbix**, **Bitwarden**, **Nessus**, **Headscale**, **Grafana**
 - Coordination DevOps : Docker Compose, certificats SSL
 
-### Asmaa
+### Asmaa  ELKOURTI
 - Installation et configuration de **OPNSense** (firewall externe, NAT, failover ISP)
 - Mise en place de **Suricata IDS/IPS** en mode inline
 - Déploiement du **VPN WireGuard**
 - **Hardening** complet des VMs Ubuntu (SSH, UFW, fail2ban, auditd)
 
-### Sara
+### Sara OUSSANEA
 - Développement de l'**application CRUD RH** (PHP 8.1 + Apache + Docker)
 - Configuration des **agents Tailscale** sur les postes et serveurs
 - Scans de vulnérabilités avec **Nessus** (avant et après sécurisation)
 
-### Meryem
+### Meryem ASSADI
 - Développement de l'**application Web commerciale** (Laravel + Nginx)
 - Déploiement du **WAF ModSecurity** avec règles OWASP CRS
 - Installation et configuration de **Wazuh SIEM** (manager + agents)
 - Mise en place du **serveur de backup** (règle 3-2-1, AES-256, rclone Google Drive)
 
-### Chaymae
+### Chaymae TARIQ
 - Simulation réseau avec **Cisco** (topologie VLAN complète)
 - Conception et déploiement du **Grafana SOC Dashboard** (sources : Zabbix + Wazuh + Nessus + Headscale)
 

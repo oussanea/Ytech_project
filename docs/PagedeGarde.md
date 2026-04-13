@@ -27,10 +27,10 @@ title: Ytech Solutions
 | Membre | Rôle |
 |---|---|
 | **Raja JARFANI** | Chef de projet · Chatbot IA · MariaDB · Monitoring · DevOps |
-| **Asmaa** | Hardening · OPNSense · WireGuard · Suricata |
-| **Sara** | App CRUD RH · Nessus · Headscale agents |
-| **Meryem** | App Web Laravel · WAF · Wazuh SIEM · Backup |
-| **Chaima** | Simulation Packet Tracer · Architecture · Grafana SOC |
+| **Asmaa ELKOURTI** | Hardening · OPNSense · WireGuard · Suricata |
+| **Sara OUSSANEA** | App CRUD RH · Nessus · Headscale agents |
+| **Meryem ASSADI** | App Web Laravel · WAF · Wazuh SIEM · Backup |
+| **Chaimae TARIQ** | Simulation Packet Tracer · Architecture · Grafana SOC |
 
 ---
 
