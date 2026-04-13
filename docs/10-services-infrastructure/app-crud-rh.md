@@ -21,10 +21,10 @@ Contrairement à des solutions SaaS comme BambooHR ou Workday, cette application
 | Composant | Technologie | Rôle |
 |---|---|---|
 | **Backend** | PHP 8.1 | Logique métier, requêtes PDO |
-| **Base de données** | MySQL 8.0 | Stockage employés, absences, utilisateurs |
+| **Base de données** | MariaDB (compatible MySQL) | Stockage employés, absences, utilisateurs |
 | **Interface web** | Bootstrap 5.3 | Interface responsive multi-device |
 | **Serveur web** | Apache 2.4 | Serveur HTTP/HTTPS |
-| **Administration BDD** | phpMyAdmin | Interface graphique MySQL |
+| **Administration BDD** | phpMyAdmin | Interface graphique MariaDB |
 | **Conteneurisation** | Docker + Docker Compose | Déploiement reproductible |
 | **HTTPS** | SSL auto-signé (OpenSSL) | Chiffrement des communications |
 
@@ -44,8 +44,8 @@ Web Server (192.168.9.253 / 192.168.56.20)
 ├── Container : ytech-nginx (Reverse Proxy)
 │     port   : 8443 → 443
 │
-└── MySQL (192.168.56.25 — DB Server séparé)
-      base   : hr_system
+└── MariaDB (192.168.56.25 — DB Server séparé)
+      base   : ytech_rh
       tables : users, employees, departments, absences
 ```
 
@@ -72,23 +72,28 @@ sudo systemctl start apache2
 ![Apache2 actif et fonctionnel](./img/apache2_2.png)
 *Apache2 en cours d'exécution — page de test accessible*
 
-### Étape 3 — Installation MySQL et PHP
+### Conteneurs Docker actifs
+
+![MariaDB — conteneur Docker en cours d'exécution](./img/mariadb-docker-ps.png)
+*Conteneur MariaDB déployé et actif sur le serveur DB*
+
+### Étape 3 — Installation MariaDB et PHP
 
 ```bash
-sudo apt install mysql-server php8.1 php8.1-mysql libapache2-mod-php -y
+sudo apt install mariadb-server php8.1 php8.1-mysql libapache2-mod-php -y
 ```
 
 ![Installation MySQL et PHP](./img/mysql_1.png)
-*Installation de MySQL 8.0 et des extensions PHP*
+*Installation de MariaDB et des extensions PHP*
 
-### Étape 4 — Sécurisation MySQL
+### Étape 4 — Sécurisation MariaDB
 
 ```bash
 sudo mysql_secure_installation
 ```
 
 ![Sécurisation MySQL — mysql_secure_installation](./img/mysql_secure_.png)
-*Configuration sécurisée de MySQL : suppression utilisateurs anonymes, désactivation accès root distant*
+*Configuration sécurisée de MariaDB : suppression utilisateurs anonymes, désactivation accès root distant*
 
 ### Étape 5 — Installation phpMyAdmin
 
@@ -100,7 +105,7 @@ sudo apt install phpmyadmin -y
 *Interface phpMyAdmin installée et accessible*
 
 ![phpMyAdmin — Interface de gestion](./img/phpmyadmin_2.png)
-*phpMyAdmin connecté à la base de données hr_system*
+*phpMyAdmin connecté à la base de données ytech_rh*
 
 ---
 
@@ -138,7 +143,7 @@ sudo apt install phpmyadmin -y
 *Page d'authentification sécurisée — bcrypt + protection session*
 
 ### Tableau de bord — IT Admin
-![Tableau de bord IT Admin](./img/crud-app-employye.png)
+![Tableau de bord IT Admin](./img/crud-app-dashboard.png)
 *Dashboard avec statistiques : 9 employés, 6 départements, absences du jour*
 
 ### Tableau de bord — RH
@@ -173,9 +178,14 @@ sudo apt install phpmyadmin -y
 
 ## Base de Données
 
+:::info Architecture base de données
+La base de données de l'application RH est **`ytech_rh`** sur le serveur MariaDB dédié (`192.168.56.25`). Elle est partagée sur le même serveur MariaDB que les bases `ytech_chatbot` et `ytech_clients`, mais totalement **isolée** — l'utilisateur `rh_user` n'a accès qu'à `ytech_rh` uniquement. Voir [Base de données](/10-services-infrastructure/base-de-donnees) pour l'architecture complète.
+:::
+
 ### Schéma
 
 ```sql
+-- Base : ytech_rh
 -- Utilisateurs système
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -271,5 +281,9 @@ L'application RH n'est **jamais exposée sur Internet**. L'accès est limité au
 ## Lien avec le Pentest
 
 Le pentest réalisé sur cette application a révélé **10 vulnérabilités dont 4 critiques** (exposition `.git`, `docker-compose.yml`, absence de rate limiting, headers manquants). Toutes les vulnérabilités critiques ont été corrigées.
+
+:::note MySQL vs MariaDB
+Le pentest mentionne "MySQL" — MariaDB est un fork 100% compatible avec MySQL. Les commandes SQL, les outils (phpMyAdmin, PDO, SQLMap) et les vulnérabilités testées sont identiques. La distinction ne change pas les résultats du pentest.
+:::
 
 Voir [Rapport de Pentest HR App]() pour le détail complet.
