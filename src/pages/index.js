@@ -3,7 +3,7 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 
 export default function Home() {
-  const team = ["Meriem", "Asmaa", "Chaimaa", "Sara", "Rajaa"];
+  const team = ["Meriem ASSADI", "Asmaa ELKOURTI", "Chaymae TARIQ", "Sara OUSSANEA", "Raja JARFANI"];
 
   return (
     <Layout title="Ytech Solutions | Cybersecurity Project">
@@ -23,7 +23,7 @@ export default function Home() {
             Infrastructure Réseau & Sécurité Informatique
           </p>
           <div style={{marginTop: '40px'}}>
-            <Link className="button button--lg" to="/docs/" style={{
+            <Link className="button button--lg" to="/docs/PagedeGarde" style={{
                 backgroundColor: '#E6E6FA',
                 color: '#1a1a2e',
                 padding: '15px 45px',
@@ -57,7 +57,6 @@ export default function Home() {
                 <h3 style={{color: '#E6E6FA', fontSize: '2rem', fontWeight: '800', margin: 0}}>
                   {name}
                 </h3>
-                <small style={{color: '#7B68EE', fontWeight: 'bold', fontSize: '0.7rem'}}>Expert Sécurité</small>
               </div>
             ))}
           </div>

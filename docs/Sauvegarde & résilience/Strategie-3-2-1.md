@@ -1,3 +1,5 @@
+
+
 # 14. Sauvegarde & Résilience
 
 La protection des actifs numériques est le pilier central de la stratégie de cybersécurité de **Ytech Solutions**. Une infrastructure sans système de sauvegarde robuste est une infrastructure vulnérable à la perte définitive de données. Pour pallier cela, nous avons mis en œuvre une architecture de résilience basée sur des standards industriels.

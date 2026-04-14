@@ -1,6 +1,6 @@
 ---
 id: script-backup
-title: script-backup
+title: scripts-backup
 sidebar_label: "Script Backup"
 sidebar_position: 2
 ---

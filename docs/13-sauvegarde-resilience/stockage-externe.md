@@ -1,6 +1,6 @@
 ---
 id: Stockage-Externe
-title: Stockage-Externe
+title: stockage-externe
 sidebar_label: "Stockage-Externe"
 sidebar_position: 3
 ---
